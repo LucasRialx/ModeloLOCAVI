@@ -1,0 +1,521 @@
+/* style.css */
+body {
+    position: relative; /* Necessário para posicionar o pseudo-elemento */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  body::before {
+    content: "";
+    position: absolute; /* Posição absoluta para cobrir todo o body */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('img/img1.jpeg'); /* Substitua com o caminho para sua imagem */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Mantém a imagem de fundo fixa */
+    background-repeat: no-repeat;
+    opacity: 1.0; /* Ajuste a opacidade aqui (0 é totalmente transparente, 1 é totalmente opaco) */
+    z-index: -1; /* Coloca o pseudo-elemento atrás do conteúdo do body */
+  }
+  
+  body {
+    background-color: #f2eeff; /* Cor de fundo, se necessário */
+  }
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Cabeçalho fixo */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #010C28;
+    color: #fff;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+/* Estilo da navegação */
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar li {
+    margin: 0 15px;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navbar a i {
+    margin-right: 8px;
+}
+
+/* Estilo do toggle do menu */
+.menu-toggle {
+    display: none;
+}
+
+/* Seção Sobre a Empresa */
+.home {
+    background-image: url('img/back.jpeg'); /* Ajuste o caminho conforme necessário */
+    background-size: cover;
+    background-position: center;
+    padding: 60px 20px;
+    text-align: center;
+    color: #ffff;
+}
+
+.home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Overlay */
+    z-index: 1;
+}
+
+.home h2, .home {
+    position: relative;
+    z-index: 2;
+}
+
+/* Seção Portfólio */
+.portfolio {
+    padding: 60px 20px;
+}
+
+.portfolio h2 {
+    color: #f4f4f4;
+    font-size: 36px;
+    text-align: center;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    width: 100%; /* Ajustado para largura responsiva */
+    max-width: 300px; /* Limite máximo para não ultrapassar o tamanho */
+    height: 400px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0 36px;
+    perspective: 2500px;
+    margin: 10px; /* Ajustado para espaçamento entre os cards */
+    border-radius: 5px;
+    background-color: transparent; /* Fundo transparente */
+    box-sizing: border-box; /* Para garantir que o padding não afete o tamanho do card */
+}
+
+/* Imagem do Card */
+.card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Wrapper para o efeito 3D */
+.card .wrapper {
+    transition: all 0.5s;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    border-radius: 5px;
+    background-color: transparent; /* Fundo transparente */
+}
+
+/* Efeito no hover */
+.card:hover .wrapper {
+    transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+    box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+}
+
+/* Gradiente nos antes e depois */
+.card .wrapper::before,
+.card .wrapper::after {
+    content: "";
+    opacity: 0;
+    width: 100%;
+    height: 80px;
+    transition: all 0.5s;
+    position: absolute;
+    left: 0;
+    border-radius: 5px;
+}
+
+.card .wrapper::before {
+    top: 0;
+    height: 100%;
+    background-image: linear-gradient(
+        to top,
+        transparent 46%,
+        rgba(12, 13, 19, 0.5) 68%,
+        rgba(12, 13, 19) 97%
+    );
+}
+
+.card .wrapper::after {
+    bottom: 0;
+    opacity: 1;
+    background-image: linear-gradient(
+        to bottom,
+        transparent 46%,
+        rgba(12, 13, 19, 0.5) 68%,
+        rgba(12, 13, 19) 97%
+    );
+}
+
+/* Opacidade do gradiente no hover */
+.card:hover .wrapper::before,
+.card:hover .wrapper::after {
+    opacity: 1;
+}
+
+.card:hover .wrapper::after {
+    height: 120px;
+}
+
+/* Efeito de transformação na imagem */
+.card img.title {
+    width: 100%;
+    transition: transform 0.5s;
+}
+
+.card:hover img.title {
+    transform: translate3d(0%, -50px, 100px);
+}
+
+/* Imagem com efeito ao passar o mouse */
+.card img.character {
+    width: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    position: absolute;
+    z-index: -1;
+}
+
+.card:hover img.character {
+    opacity: 1;
+    transform: translate3d(0%, -30%, 100px);
+}
+
+/* Botão "Ver Mais" */
+.ver-mais {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    margin-top: 20px; /* Espaçamento acima do botão */
+}
+
+.btn-ver-mais {
+    padding: 20px 34px;
+    background-color: #010C28;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-ver-mais:hover {
+    background-color: #f4f4f4;
+    color: #010C28;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsividade - Ajuste para telas menores */
+@media (max-width: 768px) {
+    .card {
+        width: 90%; /* Cards ocupam 90% da largura da tela */
+        max-width: none; /* Remove o limite máximo de largura */
+        height: auto; /* Ajuste de altura */
+    }
+
+    .portfolio h2 {
+        font-size: 28px; /* Tamanho do título reduzido em telas pequenas */
+    }
+}
+
+
+/* Seção Sobre */
+.sobre {
+    background-color: #010C28;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .sobre .container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .sobre .coluna {
+    flex: 1; /* Cada coluna ocupa o mesmo espaço */
+    margin: 0 10px; /* Espaçamento entre as colunas */
+  }
+  
+  .sobre .esquerda {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-text-size-adjust: 100%;
+    color: #FFF;
+    box-sizing: border-box;
+    border: 0;
+    font-family: inherit;
+    font-style: inherit;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    vertical-align: baseline;
+    text-align: center !important;
+    font-weight: 300;
+    font-size: 45px;
+    line-height: normal;
+    margin-top: -15px;
+  }
+  
+  .sobre .esquerda h2 {
+    font-size: 32px; /* Tamanho maior para o texto da esquerda */
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
+  }
+  
+  .sobre .esquerda p {
+    font-size: 18px; /* Tamanho do parágrafo */
+  }
+  
+  .sobre .meio {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-text-size-adjust: 100%;
+    text-align: justify;
+    line-height: 1.5;
+    color: #d0c3c3;
+    box-sizing: border-box;
+    border: 0;
+    font-family: inherit;
+    font-size: 16px;
+    font-style: inherit;
+    font-weight: inherit;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    vertical-align: baseline;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 40px;
+  }
+  
+  .sobre .meio h2 {
+    font-size: 24px; /* Tamanho médio para o texto do meio */
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
+  }
+  
+  .sobre .meio p {
+    font-size: 20px; /* Tamanho do parágrafo */
+    margin-top: 42px; /* Ajuste aqui para descer o parágrafo */
+  }
+  
+  .sobre .direita h2 {
+    font-size: 24px; /* Tamanho médio para o título dos grids */
+    margin-bottom: 10px; /* Espaçamento abaixo do título */
+  }
+  
+  .sobre .grid {
+    display: flex;
+    flex-direction: column; /* Grids empilhados */
+  }
+  
+  .sobre .item {
+    background-color: #fff;
+    color: #383535;
+    margin: 5px 0; /* Espaçamento entre os grids */
+    padding: 15px; /* Padding para os itens */
+    border-radius: 5px; /* Bordas arredondadas para os grids */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  }
+  
+/* Seção Clientes */
+.clientes h2 {
+    color: #f4f4f4;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.clientes .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.clientes .card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Card ocupa 100% da célula da grid */
+    max-width: 350px; /* Ajuste o tamanho máximo aqui, se necessário */
+    height: auto; /* Ajuste a altura para auto, de modo que o texto não sobrescreva a imagem */
+    display: flex;
+    flex-direction: column; /* Organiza o conteúdo de cima para baixo */
+    justify-content: center; /* Centraliza o conteúdo no eixo vertical */
+    align-items: center; /* Centraliza o conteúdo no eixo horizontal */
+}
+
+.clientes .card img {
+    width: 100%;
+    max-height: 100px; /* Controle a altura da imagem conforme necessário */
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.clientes .card h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    text-align: center; /* Garantir que o texto do título também esteja centralizado */
+}
+
+/* Seção Imagens */
+.imagens {
+    background: #010C28;
+    padding: 60px 20px;
+    text-align: center;
+    color: #fff;
+}
+
+/* Seção Contatos */
+.contacts {
+    padding: 60px 20px;
+}
+
+.contact-title {
+    color:#f4f4f4;
+    text-align: center;
+}
+
+.contacts-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.contact-list {
+    width: 30%; /* Ajusta a largura da caixinha */
+}
+
+.contact-list h4 {
+    text-align: center; /* Centraliza o título dentro da caixinha */
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.contact-list p {
+    text-align: center; /* Centraliza o texto dos links dentro da caixinha */
+    margin: 10px 0;
+}
+
+.contact-list a {
+    display: inline-block; /* Ajusta a largura da caixa ao conteúdo */
+    padding: 8px; /* Reduz o padding */
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%; /* Faz a caixa ocupar toda a largura disponível */
+}
+
+.contact-list a:hover {
+    background-color: #ddd;
+    color: #000;
+}
+
+.map-container {
+    width: 40%; /* Mantém a largura original do mapa */
+    height: 300px; /* Mantém a altura original do mapa */
+    margin-left: 20px; /* Adiciona margem à esquerda do mapa para afastá-lo das caixinhas */
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.footer {
+    background-color: #010C28;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .navbar {
+        display: none; /* Oculta o menu por padrão em dispositivos móveis */
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .menu-toggle.active + .navbar {
+        display: flex; /* Exibe o menu quando a classe "active" é adicionada */
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar li {
+        margin: 10px 0;
+    }
+    
+    header {
+        padding: 10px 10px; /* Ajuste a altura do cabeçalho em dispositivos móveis */
+    }
+
+    .logo img {
+        height: 40px; /* Reduza a altura da logo para dispositivos móveis */
+    }
+}
