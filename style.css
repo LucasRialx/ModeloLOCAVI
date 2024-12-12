@@ -29,7 +29,7 @@ body {
 
 @media (max-width: 480px) {
   body::before {
-    background-image: url('img/mobile-background.jpeg'); /* Imagem otimizada para celular */
+    background-image: url('img/img1.jpeg'); /* Imagem otimizada para celular */
   }
 }
 
