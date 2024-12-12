@@ -27,20 +27,12 @@ body {
     background-color: #f2eeff; /* Cor de fundo, se necessário */
   }
 
-/* Ajustes para dispositivos móveis */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   body::before {
-    background-attachment: scroll; /* Corrige problemas em dispositivos móveis */
-    background-size: cover; /* Mantém a cobertura da tela */
-    background-position: center; /* Centraliza a imagem */
-  }
-
-  .home {
-    background-attachment: scroll; /* Garante que o fundo da seção também seja responsivo */
-    background-size: cover;
-    background-position: center;
+    background-image: url('img/mobile-background.jpeg'); /* Imagem otimizada para celular */
   }
 }
+
 
 
 .container {
