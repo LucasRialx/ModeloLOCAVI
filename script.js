@@ -1,25 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Menu Mobile Toggle
+    // Lógica do Menu Mobile
     const menuToggle = document.getElementById('menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    const navLinks = document.querySelectorAll('.nav-menu a');
+    const navbar = document.querySelector('.navbar');
+    const navLinks = document.querySelectorAll('.navbar a');
 
     menuToggle.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
+        navbar.classList.toggle('active');
     });
 
     // Fecha o menu ao clicar em um link (mobile)
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
+            navbar.classList.remove('active');
         });
     });
 
-    // Animações de Scroll (Reveal)
+    // Animações de Scroll (Intersection Observer)
     const reveals = document.querySelectorAll('.reveal');
 
     const revealOptions = {
-        threshold: 0.15,
+        threshold: 0.15, // A animação dispara quando 15% do elemento estiver na tela
         rootMargin: "0px 0px -50px 0px"
     };
 
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             } else {
                 entry.target.classList.add('active');
-                observer.unobserve(entry.target); 
+                observer.unobserve(entry.target); // Para animar apenas na primeira vez
             }
         });
     }, revealOptions);
